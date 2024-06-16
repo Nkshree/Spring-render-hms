@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Reset Page</title>
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Custom styles for a professional look -->
+<style>
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f4f4f4;
+	margin-top: 40px;
+	background-image: url('css/back-3.jpg');
+}
+
+.navbar-custom {
+	position: fixed; /* Make the navbar fixed at the top */
+	top: 0;
+	width: 100%;
+	z-index: 1000; /* Ensure it stays on top of other content */
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .navbar-nav .nav-link {
+	color: #ffffff;
+}
+
+.header {
+	background-color: #ffffff;
+	padding: 20px;
+	margin-bottom: 30px;
+	border-bottom: 2px solid #dee2e6;
+}
+
+.btn {
+	font-size: 0.9em;
+	border-radius: 5rem;
+	letter-spacing: .1rem;
+	font-weight: bold;
+	padding: 1rem;
+	font-family: Arial, sans-serif;
+	transition: all 0.2s;
+}
+
+.form-input {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.form-button {
+	width: 100%;
+	background-color: #008CBA;
+	color: white;
+	padding: 15px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.btn-custom:hover {
+	background-color: #218838;
+	/* Darken button on hover for better interaction */
+}
+</style>
+</head>
+<body>
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-expand-lg navbar-custom">
+		<div class="container">
+			<a class="navbar-brand" th:href="@{/login}">Hospital Management
+				System</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/signup}">Sign
+							Up</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<!-- Password Reset Form -->
+	<div class="container mt-5">
+		<div class="row justify-content-center" style="padding-top: 80px;">
+			<div class="col-md-6">
+				<div class="card text-white bg-dark">
+					<div class="card-body">
+						<!--  <h4 class="card-title text-center mb-4">Password Reset Form</h4> -->
+						<form th:action="@{/reset}" th:object="${user}" method="post"
+							class="form-container">
+							<div class="form-group">
+								<label for="uname"><b>UserName</b></label> <input type="text"
+									placeholder="Enter Username" name="uname" id="userName"
+									th:field="*{userName}" class="form-input">
+								<div th:if="${#fields.hasErrors('userName')}"
+									th:errors="*{userName}" class="alert alert-danger">Username
+									Error</div>
+							</div>
+							<div class="form-group">
+								<label for="psw"><b>New Password</b></label> <input
+									type="password" placeholder="Enter New Password" name="psw"
+									id="password" th:field="*{password}" class="form-input">
+								<div th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}" class="alert alert-danger">Password
+									Error</div>
+							</div>
+							<div class="form-group">
+								<label for="confirmPsw"><b>Confirm New Password</b></label> <input
+									type="password" placeholder="Confirm New Password"
+									name="confirmPsw" id="confirmpassword"
+									th:field="*{confirmpassword}" class="form-input">
+								<div th:if="${#fields.hasErrors('confirmpassword')}"
+									th:errors="*{confirmpassword}" class="alert alert-danger">Confirm
+									Password Error</div>
+							</div>
+							<button type="submit" class="form-button btn">Reset
+								Password</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Include Bootstrap JS and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

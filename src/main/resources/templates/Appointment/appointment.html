@@ -1,0 +1,150 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Appointment Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+Add Bootstrap CSS
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/main}"> <img
+			th:src="@{/photo.jpg}" alt="image" style="width: 30px;"
+			class="rounded-pill"> Hospital Management
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link"
+					th:href="@{/main}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/appointment/new}">Appointments</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container mt-5">
+		<h2 class="text-center text-primary">Appointment Details</h2>
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Date</th>
+						<th>Time</th>
+						<th>Description</th>
+						<th>Update</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="app : ${appointment}">
+						<td th:text="${app.id}"></td>
+						<td th:text="${app.name}"></td>
+						<td th:text="${app.email}"></td>
+						<td th:text="${app.date}"></td>
+						<td th:text="${app.time}"></td>
+						<td th:text="${app.description}"></td>
+						 <td><a
+							th:href="@{/appointment/update/{id}(id=${app.id})}">Edit</a></td> 
+						<td><a
+							th:href="@{/appointment/delete/{id}(id=${app.id})}">Delete</a></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+	Add Bootstrap JS
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+ -->
+ 
+ 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Appointment Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Add Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/main}"> <img th:src="@{css/back-3.jpg}" alt="image" style="width: 30px; height:30px;" class="rounded-pill"> Hospital Management</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" th:href="@{/main}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/doctormain}">Doctors</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/patientmain}">Patients</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/feedbacks}">Feedback</a></li>
+				<li class="nav-item"><span sec:authorize="isAuthenticated"><a class="nav-link" th:href="@{/logout}"> Logout </a></span></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container mt-5">
+		<h2 class="text-center text-primary">Appointment Details</h2>
+		<div class="row">
+			<div th:each="app : ${appointment}" class="col-md-4 mb-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${app.name}"></h5>
+						<table class="table table-sm">
+							<tbody>
+								<tr>
+									<th scope="row">ID:</th>
+									<td th:text="${app.id}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Email:</th>
+									<td th:text="${app.email}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Date:</th>
+									<td th:text="${app.date}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Time:</th>
+									<td th:text="${app.time}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Description:</th>
+									<td th:text="${app.description}"></td>
+								</tr>
+								<tr>
+									<th scope="row"><a th:href="@{/appointment/update/{id}(id=${app.id})}" class="btn btn-primary mr-2">Update</a></th>
+									<td><a th:href="@{/appointment/delete/{id}(id=${app.id})}" class="btn btn-danger">Delete</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Add Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

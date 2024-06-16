@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Update Doctor</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"
+	href="../static/css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+.form-control {
+	margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/}">Hospital Management</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="#doctors">Doctors</a></li>
+				<li class="nav-item"><a class="nav-link" href="#patients">Patients</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2">
+				<h2 class="text-center">Update Doctor Information</h2>
+				<form th:action="@{/doctors/update}" th:object="${doctor}"
+					method="post">
+					<div class="form-group">
+						<label for="name">Name:</label> <input type="text" id="name"
+							th:field="*{name}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="doctorId"></label> <input type="hidden"
+							id="doctorId" th:field="*{doctorId}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="age">Age:</label> <input type="number" id="age"
+							th:field="*{age}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="gender">Gender:</label> <input type="text" id="gender"
+							th:field="*{gender}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="dob">Date of Birth:</label> <input type="date"
+							id="dob" th:field="*{dob}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="address">Address:</label> <input type="text"
+							id="address" th:field="*{address}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="mobile">Mobile:</label> <input type="tel" id="mobile"
+							th:field="*{mobile}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email" id="email"
+							th:field="*{email}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="specialisation">Specialisation:</label> <input
+							type="text" id="specialisation" th:field="*{specialisation}"
+							class="form-control" />
+					</div>
+					<button type="submit" class="btn btn-primary">Update</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Add Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<footer class="footer mt-auto py-3 bg-light fixed-bottom">
+		<div class="container text-center">
+			<span class="text-muted">© 2024 Hospital Management System</span>
+		</div>
+	</footer>
+
+</body>
+</html>

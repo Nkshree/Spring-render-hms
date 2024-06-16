@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #2c3e50, #bdc3c7);
+            background-image:url('css/back-3.jpg');
+        }
+        .card {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            font-size: 0.9em;
+            border-radius: 5rem;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            padding: 1rem;
+            font-family: Arial, sans-serif;
+            transition: all 0.2s;
+        }
+        .form-button {
+            width: 100%;
+            background-color: #008CBA;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .navbar-custom {
+            background-color: transparent;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/login}">Hospital Management System</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <!-- <a class="nav-link" th:href="@{/login}">Login</a> -->
+                    <a class="nav-link" th:href="@{/signup}">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="card text-white bg-dark">
+        <div class="btn-group w-100 mb-3" role="group">
+            <button id="userButton" class="btn btn-primary">User Login</button>
+            <button id="adminButton" class="btn btn-secondary">Admin Login</button>
+        </div>
+        <div id="userForm" style="display: none;">
+            <form th:action="@{/login}" th:object="${user}" method="post">
+                <div class="form-group">
+                    <label for="userInput">Username</label>
+                    <input type="text" th:field="*{userName}" class="form-control" id="userInput" placeholder="Enter username">
+                    <div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="alert alert-danger">Username Error</div>
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" id="userPassword" placeholder="Enter password">
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger">Password Error</div>
+                </div>
+                <button th:onclick="'window.location.href=\'/login\''" class="form-button btn">Login</button>
+				 <a th:href="@{/signup}" class="form-button btn">Sign Up</a>
+                <div class="text-center">
+                    <a th:href="@{/reset}" style="color: #ffffff;">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+        <div id="adminForm" style="display: none;">
+            <form th:action="@{/login}" th:object="${user}" method="post">
+                <div class="form-group">
+                    <label for="adminInput">Admin Username</label>
+                    <input type="text" th:field="*{userName}" class="form-control" id="adminInput" placeholder="Username">
+                    <div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="alert alert-danger">Username Error</div>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Admin Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" id="adminPassword" placeholder="Password">
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger">Password Error</div>
+                </div>
+                <button th:onclick="'window.location.href=\'/login\''" class="form-button btn">Login</button>
+            </form>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('#userButton').click(function() {
+            $('#userForm').show();
+            $('#adminForm').hide();
+            $('#userButton').addClass('btn-primary').removeClass('btn-secondary');
+            $('#adminButton').addClass('btn-secondary').removeClass('btn-primary');
+        });
+        $('#adminButton').click(function() {
+            $('#adminForm').show();
+            $('#userForm').hide();
+            $('#adminButton').addClass('btn-primary').removeClass('btn-secondary');
+            $('#userButton').addClass('btn-secondary').removeClass('btn-primary');
+        });
+    </script>
+</body>
+</html>
+
+ 
+ <!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #2c3e50, #bdc3c7);
+            background-image:url('css/back-3.jpg');
+            /* background-image:cover; */
+           
+        }
+        .card {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            font-size: 0.9em;
+            border-radius: 5rem;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+        .form-button {
+            width: 100%;
+            background-color: #008CBA;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .navbar-custom {
+            background-color: none; /* Bootstrap primary color */
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/login}">Hospital Management System</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link" th:href="@{/login}">Login</a>
+                    <a class="nav-link" th:href="@{/signup}">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="card text-white bg-dark">
+        <div class="btn-group w-100 mb-3" role="group">
+            <button id="userButton" class="btn btn-primary">User Login</button>
+            <button id="adminButton" class="btn btn-secondary">Admin Login</button>
+        </div>
+        <div id="userForm" style="display: none;">
+            <form th:action="@{/login}" th:object="${user}" method="post">
+                <div class="form-group">
+                    <label for="userInput">Username</label>
+                    <input type="text" th:field="*{userName}" class="form-control" id="userInput" placeholder="Enter username">
+                    <div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="alert alert-danger">Username Error</div>
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" id="userPassword" placeholder="Enter password">
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger">Password Error</div>
+                </div>
+                <button type="submit" class="form-button">Login</button>
+                <button type="submit" class="form-button">Sign Up</button>
+                <div class="text-center">
+                    <a th:href="@{/reset}" style="color: #ffffff;">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+        <div id="adminForm" style="display: none;">
+            <form th:action="@{/login/admin}" th:object="${user}" method="post">
+                <div class="form-group">
+                    <label for="adminInput">Admin Username</label>
+                    <input type="text" th:field="*{userName}" class="form-control" id="adminInput" placeholder="Enter admin username">
+                    <div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="alert alert-danger">Username Error</div>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Admin Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" id="adminPassword" placeholder="Enter admin password">
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger">Password Error</div>
+                </div>
+                <button type="submit" class="form-button">Login</button>
+            </form>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('#userButton').click(function() {
+            $('#userForm').show();
+            $('#adminForm').hide();
+            $('#userButton').addClass('btn-primary').removeClass('btn-secondary');
+            $('#adminButton').addClass('btn-secondary').removeClass('btn-primary');
+        });
+        $('#adminButton').click(function() {
+            $('#adminForm').show();
+            $('#userForm').hide();
+            $('#adminButton').addClass('btn-primary').removeClass('btn-secondary');
+            $('#userButton').addClass('btn-secondary').removeClass('btn-primary');
+        });
+    </script> -->
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Management System</title>
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Custom styles for a sleek and professional look -->
+<style>
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f4f4f4;
+	margin-top: 40px;
+	background-image: url('css/back-3.jpg');
+}
+
+.navbar-custom {
+	position: fixed; /* Make the navbar fixed at the top */
+	top: 0;
+	width: 100%;
+	z-index: 1000; /* Ensure it stays on top of other content */
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .navbar-nav .nav-link {
+	color: #ffffff;
+}
+
+.header {
+	background-color: #ffffff;
+	padding: 20px;
+	margin-bottom: 30px;
+	border-bottom: 2px solid #dee2e6;
+}
+
+.btn {
+	font-size: 0.9em;
+	border-radius: 5rem;
+	letter-spacing: .1rem;
+	font-weight: bold;
+	padding: 1rem;
+	font-family: Arial, sans-serif;
+	transition: all 0.2s;
+}
+
+.form-button {
+	width: 100%;
+	background-color: #008CBA;
+	color: white;
+	padding: 15px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.btn-custom:hover {
+	background-color: #218838;
+	/* Darken button on hover for better interaction */
+}
+</style>
+</head>
+<body>
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-expand-lg navbar-custom">
+		<div class="container">
+			<a class="navbar-brand" th:href="@{/login}">Hospital Management
+				System</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container mt-5">
+		<!-- Sign Up form on a card -->
+		<div class="row justify-content-center" style="padding-top:100px;">
+			<div class="col-md-6">
+				<div class="card text-white bg-dark">
+					<div class="card-body">
+						<!-- <h4 class="card-title text-center mb-4">Create Your Account</h4> -->
+						<form th:action="@{/registration}" th:object="${user}" method="post">
+							<div class="form-group">
+								<label for="email">Email Address</label> <input type="text"
+									class="form-control" id="email" placeholder="Username"
+									th:field="*{userName}">
+								<div th:if="${#fields.hasErrors('userName')}"
+									th:errors="*{userName}" class="alert alert-danger">Username
+									Error</div>
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label> <input type="password"
+									class="form-control" id="password" placeholder="Password"
+									th:field="*{password}">
+								<div th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}" class="alert alert-danger">Password
+									Error</div>
+							</div>
+							<div class="form-group">
+								<label for="confirm-password">Confirm Password</label> <input
+									type="password" class="form-control" id="confirm-password"
+									placeholder="Re-enter your password"
+									th:field="*{confirmpassword}">
+								<div th:if="${#fields.hasErrors('confirmpassword')}"
+									th:errors="*{confirmpassword}" class="alert alert-danger">Confirm
+									Password Error</div>
+							</div>
+							<button class="form-button btn">Sign Up</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Include Bootstrap JS and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Management System</title>
+Include Bootstrap CSS
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+Custom styles for a professional look
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  .navbar-custom {
+    background-color: #007bff; /* Bootstrap primary color */
+  }
+  .navbar-custom .navbar-brand,
+  .navbar-custom .navbar-nav .nav-link {
+    color: #fff;
+  }
+  .header {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e3e4e6;
+  }
+  .header h1 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  .btn-primary {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  Navigation Bar
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" th:href="@{/signup}">Hospital Management System</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/login}">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  Page Header
+  <div class="header text-center">
+    <h1>Welcome to the Hospital Management System</h1>
+  </div>
+
+  <div class="container mt-5">
+    Existing code for Sign Up form
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card" style="background-color: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+          <div class="card-body">
+            <h4 class="card-title text-center">Sign Up</h4>
+            <form th:action="@{/signup}" th:object="${user}" method="post">
+              Form fields remain unchanged
+              <div class="form-group">
+                <label for="email">Email Address</label> <input type="email" th:field="*{userName}"
+                  class="form-control" id="email" placeholder="Enter your email"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label> <input type="password" th:field="*{password}"
+                  class="form-control" id="password"
+                  placeholder="Enter your password" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Confirm Password</label> <input
+                  type="password" class="form-control" id="password" th:field="*{confirmpassword}"
+                  placeholder="Re-Enter your password" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Sign Up</button>&nbsp;              Additional Login Button
+               <a th:href="@{/login}" class="btn btn-primary">Login</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  Include Bootstrap JS and jQuery
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+ -->

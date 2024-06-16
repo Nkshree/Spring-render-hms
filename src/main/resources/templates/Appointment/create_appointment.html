@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Create Appointment</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"
+	href="../static/css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<style>
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+.form-control {
+	margin-bottom: 10px;
+}
+
+/* Additional styles for the form elements */
+.form-group label {
+	margin-top: 0.5em;
+}
+
+/* Style for the submit button */
+.btn-primary {
+	background-color: #007bff;
+	border-color: #007bff;
+}
+
+.timepicker {
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	padding: 0.375rem 0.75rem;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/main}">Hospital Management</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" th:href="@{/main}">Home</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/doctormain}">Doctors</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/patientmain}">Patients</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/feedbacks}">Feedback</a></li>
+				<li class="nav-item"><span sec:authorize="isAuthenticated"><a
+						class="nav-link" th:href="@{/logout}"> Logout </a></span></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2">
+				<h2 class="text-center">Create Appointment</h2>
+				<form th:action="@{/appointments}" th:object="${appointment}"
+					method="post">
+					<input type="hidden" class="form-control" id="id" th:field="*{id}">
+					<div class="form-group">
+						<label for="name">Name:</label> <input type="text"
+							class="form-control" id="name" th:field="*{name}" required>
+						<small th:if="${#fields.hasErrors('name')}" class="text-danger"
+							th:errors="*{name}"></small>
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email"
+							class="form-control" id="email" th:field="*{email}"> <small
+							th:if="${#fields.hasErrors('email')}" class="text-danger"
+							th:errors="*{email}"></small>
+					</div>
+					<div class="form-group">
+						<label for="date">Date:</label> <input type="date"
+							class="form-control" id="date" th:field="*{date}"> <small
+							th:if="${#fields.hasErrors('date')}" class="text-danger"
+							th:errors="*{date}"></small>
+					</div>
+					<div class="form-group">
+						<label for="time">Time:</label> <input type="text"
+							class="form-control timepicker" id="time" th:field="*{time}">
+						<small th:if="${#fields.hasErrors('time')}" class="text-danger"
+							th:errors="*{time}"></small>
+					</div>
+					
+					<div class="form-group">
+						<label for="description">Description:</label>
+						<textarea class="form-control" id="description"
+							th:field="*{description}"></textarea>
+						<small th:if="${#fields.hasErrors('description')}"
+							class="text-danger" th:errors="*{description}"></small>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Add Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- Timepicker JS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.timepicker').timepicker({
+				timeFormat : 'h:mm p',
+				interval : 30,
+				minTime : '1',
+				maxTime : '11:30pm',
+				defaultTime : '9',
+				startTime : '9:00',
+				dynamic : false,
+				dropdown : true,
+				scrollbar : true
+			});
+		});
+
+		$(document).ready(function() {
+			var randomNumber = Math.floor(Math.random() * 100) + 1;
+			$("#id").val(randomNumber);
+		});
+	</script>
+</body>
+</html>

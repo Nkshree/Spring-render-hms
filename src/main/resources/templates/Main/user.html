@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hospital Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light grey background for professional look */
+            background-size: cover;
+        }
+        .section {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for sections */
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .navbar-brand img {
+            height: 30px;
+            width: auto;
+        }
+        .navbar {
+            background-color: #343a40; /* Darker navbar for contrast */
+        }
+        .navbar-brand {
+            color: #fff; /* White text for navbar brand */
+        }
+        .nav-link {
+            color: #fff; /* White text for navbar links */
+        }
+        .nav-link:hover {
+            color: #ccc; /* Light grey text for navbar links on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/userpage}">
+            <img th:src="@{css/back-3.jpg}" alt="image" style="width:30px;" class="rounded-pill">
+            Hospital Management
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/userpage}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#patients">Patients</a>
+                </li>
+				<li class="nav-item"><span sec:authorize="isAuthenticated">
+						<a class="nav-link" th:href="@{/logout}"> Logout </a>
+
+				</span></li>
+			</ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div id="home" class="section">
+            <h1>Welcome to the Hospital Management System</h1>
+            <p>This is a system designed to manage all aspects of a hospital, including room allocation, student registration, and more.</p>
+        </div>
+        <div id="patients" class="section">
+            <h2>Patients</h2>
+            <ul>
+                <li><a th:href="@{/patient/new}">Create Patient</a></li>
+                <li><a th:href="@{/feedback/new}">Register Feedback</a></li>
+                <li><a th:href="@{/appointment/new}">Book Appointment</a></li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

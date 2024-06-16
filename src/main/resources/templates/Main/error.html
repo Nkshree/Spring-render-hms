@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Error - Access Forbidden</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            margin-top: 40px;
+        }
+
+        .error-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .error-container h1 {
+            color: #df3800;
+            margin-bottom: 20px;
+        }
+
+        .error-container h3, .error-container h5 {
+            color: #6c757d;
+        }
+
+        .error-container p {
+            color: black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <h1>Error - Access Forbidden</h1>
+        <a th:href="@{/login}"><button type="button" class="btn btn-primary">Login</button></a>
+        <a href="#" type="button" class="btn btn-primary" onclick="window.history.back();">Back</a>
+        <h3>You are not authorized to access this page!!!</h3>
+        <h5>Please login to proceed...! </h5>
+        <p th:text="${errorMessage}"></p>
+    </div>
+</body>
+
+</html>

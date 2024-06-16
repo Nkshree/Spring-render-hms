@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Create Doctor</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"
+	href="../static/css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+.form-control {
+	margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/main}">Hospital Management</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" th:href="@{/main}">Home</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/doctormain}">Doctors</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/patientmain}">Patients</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/feedbacks}">Feedback</a></li>
+				<li class="nav-item"><span sec:authorize="isAuthenticated"><a
+						class="nav-link" th:href="@{/logout}"> Logout </a></span></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2">
+				<h2 class="text-center">Register New Doctor</h2>
+				<form th:action="@{/doctors}" th:object="${doctor}" method="post">
+					<div class="form-group">
+						<label for="name">Name:</label> <input type="text" id="name"
+							th:field="*{name}" class="form-control" /> <small
+							th:if="${#fields.hasErrors('name')}" class="text-danger"
+							th:errors="*{name}"></small>
+					</div>
+
+					<input type="hidden" id="doctorId" th:field="*{doctorId}"
+						class="form-control" /> <small
+						th:if="${#fields.hasErrors('doctorId')}" class="text-danger"
+						th:errors="*{doctorId}"></small>
+
+					<div class="form-group">
+						<label for="age">Age:</label> <input type="number" id="age"
+							th:field="*{age}" class="form-control" /> <small
+							th:if="${#fields.hasErrors('age')}" class="text-danger"
+							th:errors="*{age}"></small>
+					</div>
+					<div class="form-group">
+						<label for="gender">Gender:</label> <input type="text" id="gender"
+							th:field="*{gender}" class="form-control" /> <small
+							th:if="${#fields.hasErrors('gender')}" class="text-danger"
+							th:errors="*{gender}"></small>
+					</div>
+					<div class="form-group">
+						<label for="dob">Date of Birth:</label> <input type="date"
+							id="dob" th:field="*{dob}" class="form-control" /> <small
+							th:if="${#fields.hasErrors('dob')}" class="text-danger"
+							th:errors="*{dob}"></small>
+					</div>
+					<div class="form-group">
+						<label for="address">Address:</label> <input type="text"
+							id="address" th:field="*{address}" class="form-control" /> <small
+							th:if="${#fields.hasErrors('address')}" class="text-danger"
+							th:errors="*{address}"></small>
+					</div>
+					<div class="form-group">
+						<label for="mobile">Mobile:</label> <input type="tel" id="mobile"
+							th:field="*{mobile}" class="form-control" /> <small
+							th:if="${#fields.hasErrors('mobile')}" class="text-danger"
+							th:errors="*{mobile}"></small>
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email" id="email"
+							th:field="*{email}" class="form-control" /> <small
+							th:if="${#fields.hasErrors('email')}" class="text-danger"
+							th:errors="*{email}"></small>
+					</div>
+					<div class="form-group">
+						<label for="specialisation">Specialisation:</label> <input
+							type="text" id="specialisation" th:field="*{specialisation}"
+							class="form-control" /> <small
+							th:if="${#fields.hasErrors('specialisation')}"
+							class="text-danger" th:errors="*{specialisation}"></small>
+					</div>
+
+
+					<button type="submit" class="btn btn-primary">Create</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Add Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var randomNumber = Math.floor(Math.random() * 100) + 1;
+			$("#doctorId").val(randomNumber);
+		});
+	</script>
+
+</body>
+</html>

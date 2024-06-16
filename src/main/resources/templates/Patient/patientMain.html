@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hospital Management System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+body {
+	background-color: #f4f4f4;
+	/* Light grey background for better readability */
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand img {
+	height: 30px;
+	width: 30px;
+}
+
+.section {
+	background: rgba(255, 255, 255, 0.8);
+	/* Semi-transparent white background for cards */
+	margin-bottom: 30px;
+	padding: 20px;
+	border-radius: 15px;
+}
+
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	/* Add shadow to cards for depth */
+	transition: 0.3s; /* Smooth transition for hover effect */
+}
+
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	/* Increase shadow on hover */
+}
+
+.card-title {
+	margin-bottom: 15px; /* Add space below the title */
+}
+
+.card-text {
+	font-size: 16px; /* Increase text size for better readability */
+}
+
+.btn-primary {
+	background-color: #007bff; /* Bootstrap primary color */
+	border-color: #007bff;
+}
+
+.btn-primary:hover {
+	background-color: #0056b3; /* Darken on hover */
+	border-color: #0056b3;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/main}"> <img
+			th:src="@{css/back-3.jpg}" alt="image"
+			class="rounded-pill"> Hospital Management
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" th:href="@{/main}">Home</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/doctormain}">Doctors</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/feedbacks}">Feedback</a></li>
+				<li class="nav-item"><span sec:authorize="isAuthenticated"><a
+						class="nav-link" th:href="@{/logout}"> Logout </a></span></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container mt-4">
+		<div id="home" class="section">
+			<h1>Welcome to the Hospital Management System</h1>
+			<p>This is a system designed to manage all aspects of a hospital,
+				including room allocation, student registration, and more.</p>
+		</div>
+		<div id="patients" class="section">
+			<h2>Patients</h2>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Create Patient</h5>
+							<p class="card-text">Add a new patient to the system.</p>
+							<a th:href="@{/patient/new}" class="btn btn-primary">Create</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Display Patients</h5>
+							<p class="card-text">View all patients in the system.</p>
+							<a th:href="@{/patients}" class="btn btn-primary">View</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Update Patient</h5>
+							<p class="card-text">Edit details of an existing patient.</p>
+							<a th:href="@{/patients}" class="btn btn-primary">Update</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

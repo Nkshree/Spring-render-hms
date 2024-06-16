@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<style>
+body {
+	display: flex;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+	font-family: Arial, sans-serif;
+	background: linear-gradient(to right, #2c3e50, #bdc3c7);
+	background-image: url('css/back-3.jpg');
+}
+
+.card {
+	width: 100%;
+	max-width: 400px;
+	padding: 20px;
+	margin: auto;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+	font-size: 0.9em;
+	border-radius: 5rem;
+	letter-spacing: .1rem;
+	font-weight: bold;
+	padding: 1rem;
+	font-family: Arial, sans-serif;
+	transition: all 0.2s;
+}
+
+.form-button {
+	width: 100%;
+	background-color: #008CBA;
+	color: white;
+	padding: 15px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.navbar-custom {
+	background-color: transparent;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .navbar-nav .nav-link {
+	color: #fff;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-custom">
+		<div class="container">
+			<a class="navbar-brand" th:href="@{/login}">Hospital Management
+				System</a>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav ml-auto">
+					<a class="nav-link" th:href="@{/registration}">Sign Up</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<main class="card text-white bg-dark">
+
+		<div id="userForm">
+			<div th:if="${passwordResetSuccess}" class="alert alert-success"
+				role="alert" style="text-align: center;">
+				Password Reset Successfully!<br> Please Login to continue!
+			</div>
+			<div th:if="${messageOnRegistration}" class="alert alert-success"
+				role="alert" style="text-align: center;">
+				Registered Successfully!<br> Please Login to continue!
+			</div>
+			<div th:if="${param.error}" class="alert alert-danger" role="alert" style="text-align:center;">
+				 Invalid Credentials
+			</div>
+			<form th:action="@{/login}" method="post">
+				<div class="form-group">
+					<label for="username">Email:</label> <input type="email"
+						id="username" name="username" class="form-control"
+						placeholder="Enter your email" required>
+				</div>
+				<div class="form-group">
+					<label for="password">Password:</label> <input type="password"
+						id="password" name="password" class="form-control"
+						placeholder="Enter your password" required>
+				</div>
+				<button type="submit" class="form-button btn">Login</button>
+				<a th:href="@{/registration}" class="form-button btn">Sign Up</a>
+				<div class="text-center">
+					<a th:href="@{/reset}" style="color: #ffffff;">Forgot Password?</a>
+				</div>
+			</form>
+		</div>
+
+	</main>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Management System</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #2c3e50, #bdc3c7);
+}
+
+.navbar-custom {
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.card {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 80px; /* Adjusted to accommodate the fixed navbar */
+}
+
+.about-us {
+    margin-top: 80px; /* Adjusted to accommodate the fixed navbar */
+}
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/login}">Hospital Management System</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link" th:href="@{/registration}">Sign Up</a>
+                    <a class="nav-link" th:href="@{#aboutUs}">About Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="card text-white bg-dark">
+        <div id="userForm">
+            <div th:if="${passwordResetSuccess}" class="alert alert-success"
+				role="alert" style="text-align: center;">
+				Password Reset Successfully!<br> Please Login to continue!
+			</div>
+			<div th:if="${messageOnRegistration}" class="alert alert-success"
+				role="alert" style="text-align: center;">
+				Registered Successfully!<br> Please Login to continue!
+			</div>
+			<div th:if="${param.error}" class="alert alert-danger" role="alert" style="text-align:center;">
+				 Invalid Credentials
+			</div>
+			<form th:action="@{/login}" method="post">
+				<div class="form-group">
+					<label for="username">Email:</label> <input type="email"
+						id="username" name="username" class="form-control"
+						placeholder="Enter your email" required>
+				</div>
+				<div class="form-group">
+					<label for="password">Password:</label> <input type="password"
+						id="password" name="password" class="form-control"
+						placeholder="Enter your password" required>
+				</div>
+				<button type="submit" class="form-button btn">Login</button>
+				<a th:href="@{/registration}" class="form-button btn">Sign Up</a>
+				<div class="text-center">
+					<a th:href="@{/reset}" style="color: #ffffff;">Forgot Password?</a>
+				</div>
+			</form>
+		</div>
+        </div>
+    </main>
+
+    <section id="aboutUs" class="container about-us mt-5">
+        <h2 class="text-center mb-4">About Us</h2>
+        <p>
+            Our hospital is dedicated to providing top-notch medical care and services. We are equipped with state-of-the-art facilities and offer a wide range of specialties.
+        </p>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Facilities</h3>
+                <p>
+                    We have a comprehensive range of facilities including modern operating theaters, advanced diagnostic labs, and a well-equipped intensive care unit.
+                </p>
+                Placeholder for image
+                <img src="path/to/your/image.jpg" alt="Facilities" class="img-fluid mb-3">
+            </div>
+            <div class="col-md-6">
+                <h3>Specialties</h3>
+                <p>
+                    Our team of experienced doctors specializes in various fields including cardiology, orthopedics, neurology, and more. We are committed to providing personalized care and treatment options.
+                </p>
+                Placeholder for image
+                <img src="path/to/your/image.jpg" alt="Specialties" class="img-fluid mb-3">
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="path/to/your/link" class="btn btn-primary">Learn More</a>
+        </div>
+        <div class="mt-5">
+            <h3>Booking Appointments</h3>
+            <p>
+                We offer a convenient online booking system for appointments. You can easily schedule your visit to our hospital by selecting your preferred date and time.
+            </p>
+            Placeholder for booking link
+            <a href="path/to/booking" class="btn btn-secondary">Book an Appointment</a>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelector('a[href="#aboutUs"]').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('aboutUs').scrollIntoView({behavior: 'smooth'});
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

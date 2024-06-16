@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Patient Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Add Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/main}"> <img th:src="@{css/back-3.jpg}" alt="image" style="height: 30px; width:30px;" class="rounded-pill"> Hospital Management</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" th:href="@{/main}">Home</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/doctormain}">Doctors</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/patientmain}">Patients</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/feedbacks}">Feedback</a></li>
+				<li class="nav-item"><span sec:authorize="isAuthenticated"><a
+						class="nav-link" th:href="@{/logout}"> Logout </a></span></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container mt-5">
+		<h2 class="text-center text-primary">Patient Details</h2>
+		<div class="row">
+			<div th:each="patient : ${patients}" class="col-md-4 mb-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${patient.name}"></h5>
+						<table class="table table-sm">
+							<tbody>
+								<tr>
+									<th scope="row">Patient ID:</th>
+									<td th:text="${patient.patientId}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Age:</th>
+									<td th:text="${patient.age}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Gender:</th>
+									<td th:text="${patient.gender}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Date of Birth:</th>
+									<td th:text="${patient.dob}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Address:</th>
+									<td th:text="${patient.address}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Mobile:</th>
+									<td th:text="${patient.mobile}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Email:</th>
+									<td th:text="${patient.email}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Guardian Name:</th>
+									<td th:text="${patient.gname}"></td>
+								</tr>
+								<tr>
+									<th scope="row">Guardian Mobile:</th>
+									<td th:text="${patient.gmobile}"></td>
+								</tr>
+								<tr>
+									<th scope="row"><a th:href="@{/patient/{patientId}(patientId=${patient.patientId})}" class="btn btn-primary mr-2">Update</a></th>
+									<td><button th:data-patient-id="${patient.patientId}" class="btn btn-danger delete-btn">Delete</button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Add Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.delete-btn').click(function() {
+				var patientId = $(this).data('patient-id');
+				if (confirm('Are you sure you want to delete this patient?')) {
+					window.location.href = '/patient/delete/' + patientId;
+				}
+			});
+		});
+	</script>
+</body>
+</html>

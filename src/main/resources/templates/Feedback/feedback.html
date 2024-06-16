@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedbacks</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+body {
+	background: linear-gradient(to right, #006fff, #00d6ff);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+	background-color: #343a40;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+	height: 30px;
+	width: auto;
+}
+
+.navbar-brand, .nav-link {
+	color: #fff;
+}
+
+.card {
+	margin-bottom: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<a class="navbar-brand" th:href="@{/main}"> <img
+			th:src="@{css/back-3.jpg}" alt="image" style="width: 30px;"
+			class="rounded-pill"> Hospital Management
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" th:href="@{/main}">Home</a>
+				</li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/doctormain}">Doctors</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/patientmain}">Patients</a></li>
+				<li class="nav-item"><span sec:authorize="isAuthenticated"><a
+						class="nav-link" th:href="@{/logout}"> Logout </a></span></li>
+				<!--  -->
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<h2 class="text-center">FEEDBACK</h2>
+		<div class="row">
+			<div class="col-md-4" th:each="feedback : ${feedbacks}">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">
+							Name: <span th:text="${feedback.name}"></span>
+						</h5>
+						<p class="card-text">
+							Email: <span th:text="${feedback.email}"></span>
+						</p>
+						<p class="card-text">
+							Feedback: <span th:text="${feedback.feedback}"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Feedbacks</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"
+	href="../static/css/style.css">
+Add Bootstrap CSS
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+Add Google Fonts
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet">
+<style>
+body {
+	/* Add a gradient background */
+	background: linear-gradient(to right, #006fff, #00d6ff);
+	font-family: 'Roboto', sans-serif;
+}
+
+.container {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 15px;
+}
+
+.table {
+	margin-top: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+th {
+	font-weight: 500;
+}
+
+.btn {
+	border-radius: 0;
+}
+
+.btn-primary {
+	background-color: #00c6ff;
+}
+
+.btn-secondary {
+	background-color: #0072ff;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h2 class="text-center">FEEDBACK</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>FeedBack</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="feedback : ${feedbacks}">
+					<td th:text="${feedback.name}"></td>
+					<td th:text="${feedback.email}"></td>
+					<td th:text="${feedback.feedback}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
+ -->
